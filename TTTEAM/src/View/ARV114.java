@@ -6,7 +6,10 @@ package View;
 
 import Handling_350_114.Handling;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model_114.WLine;
 
 /**
  *
@@ -22,11 +25,36 @@ public class ARV114 extends javax.swing.JFrame {
      */
     public ARV114() {
 
-        handle = new Handling();
+         handle = new Handling();
         initComponents();
         setLocationRelativeTo(null);
         Color mycolor = new Color(255, 153, 0);
         this.getContentPane().setBackground(mycolor);
+        
+        tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // khong cho phep nguoi dung Edit du lieu trong bang
+            }
+
+        };
+        tableModel.addColumn("id");
+        tableModel.addColumn("idUser");
+        tableModel.addColumn("title");
+        tableModel.addColumn("price");
+        tableModel.addColumn("des");
+
+        table.setModel(tableModel);
+        SetModelTable(handle.GetAllWLine());
+
+    }
+
+    public void SetModelTable(List<WLine> PrDatas) {
+        for (WLine PrData : PrDatas) {
+            tableModel.addRow(new Object[]{
+                PrData.getid(), PrData.getIdUser(), PrData.gettitle(), PrData.getprice(), PrData.getdes()});
+        }
+    
 
     }
 
@@ -42,8 +70,8 @@ public class ARV114 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        add = new javax.swing.JLabel();
+        rm = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,19 +97,19 @@ public class ARV114 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Bản sao icons8-add-30.png"))); // NOI18N
-        jLabel1.setText("ADD");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Bản sao icons8-add-30.png"))); // NOI18N
+        add.setText("ADD");
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                addMouseClicked(evt);
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-remove-30.png"))); // NOI18N
-        jLabel4.setText("REMOVE");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        rm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-remove-30.png"))); // NOI18N
+        rm.setText("REMOVE");
+        rm.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                rmMouseClicked(evt);
             }
         });
 
@@ -104,9 +132,9 @@ public class ARV114 extends javax.swing.JFrame {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(139, 139, 139)
-                .addComponent(jLabel1)
+                .addComponent(add)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
+                .addComponent(rm)
                 .addGap(112, 112, 112))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,8 +149,8 @@ public class ARV114 extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -136,13 +164,35 @@ public class ARV114 extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel4MouseClicked
+    private void rmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rmMouseClicked
+        int row = table.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Select the row you want to remove!",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int confirmDelete = JOptionPane.showConfirmDialog(rootPane, "Are You sure?");
+            if (confirmDelete == JOptionPane.YES_OPTION) {
+                int PrDataID = Integer.parseInt(String.valueOf(table.getValueAt(row, 0)));
+                handle.DeleteWLine(PrDataID);
+            }
+        }
+    }//GEN-LAST:event_rmMouseClicked
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel1MouseClicked
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        int row = table.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Select the row you want to ADD!",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+        int id = Integer.parseInt(String.valueOf(table.getValueAt(row, 0)));
+        WLine p = Handling.GetWLine(id);
+        handle.AddNewProductData(p); 
+        handle.DeleteWLine(id);
+        JOptionPane.showMessageDialog(rootPane, "Success!");
+        tableModel.setRowCount(0);
+        SetModelTable(handle.GetAllWLine());
+        }
+    }//GEN-LAST:event_addMouseClicked
 
     /**
      * @param args the command line arguments
@@ -180,11 +230,11 @@ public class ARV114 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel add;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel rm;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 

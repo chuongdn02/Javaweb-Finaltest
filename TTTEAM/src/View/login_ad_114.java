@@ -16,14 +16,14 @@ import model_114.user;
  *
  * @author macpro
  */
-public class login_147 extends javax.swing.JFrame {
+public class login_ad_114 extends javax.swing.JFrame {
 
     Handling handle;
 
     /**
      * Creates new form Sigin
      */
-    public login_147() {
+    public login_ad_114() {
         handle = new Handling();
         initComponents();
         setLocationRelativeTo(null);
@@ -45,17 +45,18 @@ public class login_147 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         phone = new javax.swing.JTextField();
         login = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        Fpass = new javax.swing.JLabel();
         pass = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        exit = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        Home = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -69,7 +70,7 @@ public class login_147 extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_password_30px.png"))); // NOI18N
 
-        phone.setText("Phone");
+        phone.setText("Username or phone");
         phone.setBorder(null);
         phone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,11 +87,11 @@ public class login_147 extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Forgot password?");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        Fpass.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Fpass.setText("Forgot password?");
+        Fpass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                FpassMouseClicked(evt);
             }
         });
 
@@ -102,6 +103,15 @@ public class login_147 extends javax.swing.JFrame {
 
         jSeparator2.setBackground(new java.awt.Color(15, 82, 186));
         jSeparator2.setForeground(new java.awt.Color(15, 82, 186));
+
+        exit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exit.setText("X");
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Don't have an account?");
@@ -135,7 +145,7 @@ public class login_147 extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Fpass, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -148,6 +158,9 @@ public class login_147 extends javax.swing.JFrame {
                                     .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(pass))))
                         .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -155,7 +168,8 @@ public class login_147 extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -170,7 +184,7 @@ public class login_147 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Fpass, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -190,11 +204,11 @@ public class login_147 extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Place to Trade All Kinds of Goods");
 
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_home_30px.png"))); // NOI18N
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        Home.setForeground(new java.awt.Color(255, 255, 255));
+        Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_home_30px.png"))); // NOI18N
+        Home.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
+                HomeMouseClicked(evt);
             }
         });
 
@@ -206,14 +220,14 @@ public class login_147 extends javax.swing.JFrame {
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10)
+                .addComponent(Home)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10)
+                .addComponent(Home)
                 .addGap(68, 68, 68)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -240,29 +254,46 @@ public class login_147 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        if(phone.getText().equals("") || String.valueOf(pass.getPassword()).equals("")) {
+        if (phone.getText().equals("") || String.valueOf(pass.getPassword()).equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Please enter all fields", "WARNING", JOptionPane.WARNING_MESSAGE);
             return;
         }
         user loginS = handle.SigninUSER(phone.getText());
-        if(loginS == null) {
-            JOptionPane.showMessageDialog(rootPane, "UserData doesn't exist!");
-            return;
-        } else {
-
-            if(!loginS.getpass().equals(String.valueOf(pass.getPassword()))) {
+        admin login = handle.Signinadmin(phone.getText());
+        Handling.SelectPhone(phone.getText());
+        if (loginS != null) {
+            if (!loginS.getpass().equals(String.valueOf(pass.getPassword()))) {
                 JOptionPane.showMessageDialog(rootPane, "Passord incorrect!!");
                 return;
             } else {
                 new user_pr_350().setVisible(true);
                 this.dispose();
             }
-        } // TODO add your handling code here:
+        }
+        if (login != null) {
+            if (!login.getpass().equals(String.valueOf(pass.getPassword()))) {
+                JOptionPane.showMessageDialog(rootPane, "Passord incorrect!!");
+                return;
+            } else {
+                new admin_pr_114().setVisible(true);
+                this.dispose();
+            }
+        }
+        if (loginS == null && login == null) {
+            JOptionPane.showMessageDialog(rootPane, "This account doesn't exist");
+            return;
+
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_loginActionPerformed
 
     private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_phoneActionPerformed
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_exitMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
@@ -270,20 +301,19 @@ public class login_147 extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel6MouseClicked
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+    private void HomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMouseClicked
         // TODO add your handling code here:
         new home_333().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel10MouseClicked
+    }//GEN-LAST:event_HomeMouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        try{
+    private void FpassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FpassMouseClicked
+       try{
             Desktop.getDesktop().browse(new URL("https://sso-edu.viettel.vn/?page=Member.forgotPassword").toURI());
         }
         catch(Exception e)
         {}
-// TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_FpassMouseClicked
 
     /**
      * @param args the command line arguments
@@ -302,29 +332,31 @@ public class login_147 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login_147.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login_ad_114.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login_147.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login_ad_114.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login_147.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login_ad_114.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login_147.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login_ad_114.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new login_147().setVisible(true);
+                new login_ad_114().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Fpass;
+    private javax.swing.JLabel Home;
+    private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

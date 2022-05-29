@@ -294,15 +294,21 @@ public class Handling {
         try {
             PreparedStatement ps = null;
             switch (searchType) {
-                case "id":
-                    ps = conn.prepareStatement("select * from product where id = ?");
+                case "title":
+                    ps = conn.prepareStatement("select * from product where title = ?");
                     ps.setObject(1, valueSearch);
                     break;
-
                 case "name":
                     ps = conn.prepareStatement("select * from product where name = ?");
                     ps.setObject(1, valueSearch);
                     break;
+                case "price":
+                    ps = conn.prepareStatement("select * from product where price = ?");
+                    ps.setObject(1, valueSearch);
+                    break;
+                
+
+                
             }
 
             ResultSet result = ps.executeQuery();
