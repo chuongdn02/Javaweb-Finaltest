@@ -22,7 +22,7 @@ public class detail_350 extends javax.swing.JFrame {
     public detail_350() {
         
         setLocationRelativeTo(null);
-        Color mycolor = new Color(255, 255, 255);
+        Color mycolor = new Color(255,153,0);
         this.getContentPane().setBackground(mycolor);
         initComponents();
         

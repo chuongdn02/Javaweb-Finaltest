@@ -28,7 +28,7 @@ public class admin_pr_114 extends javax.swing.JFrame {
         handle = new Handling();
         initComponents();
         setLocationRelativeTo(null);
-        Color mycolor = new Color(255, 255, 255);
+        Color mycolor = new Color(255, 153, 0);
         this.getContentPane().setBackground(mycolor);
 
         tableModel = new DefaultTableModel() {
@@ -39,20 +39,18 @@ public class admin_pr_114 extends javax.swing.JFrame {
 
         };
         tableModel.addColumn("id");
-        tableModel.addColumn("idUser");
         tableModel.addColumn("title");
         tableModel.addColumn("price");
-        tableModel.addColumn("des");
 
         table.setModel(tableModel);
-        SetModelTable(handle.GetAllWLine());
+        SetModelTable(handle.GetAllproduct());
 
     }
 
-    public void SetModelTable(List<WLine> PrDatas) {
-        for (WLine PrData : PrDatas) {
+    public void SetModelTable(List<product> PrDatas) {
+        for (product PrData : PrDatas) {
             tableModel.addRow(new Object[]{
-                PrData.getid(), PrData.getIdUser(), PrData.gettitle(), PrData.getprice(), PrData.getdes()});
+                PrData.getid(), PrData.gettitle(), PrData.getprice()});
         }
     }
 
@@ -65,20 +63,75 @@ public class admin_pr_114 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        del = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        refesh = new javax.swing.JButton();
-        del = new javax.swing.JButton();
-        conf = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        searchcb = new javax.swing.JComboBox<>();
+        search = new javax.swing.JButton();
+        searchTF = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 102));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(600, 500));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banner.png"))); // NOI18N
 
-        table.setBackground(new java.awt.Color(255, 255, 204));
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+
+        del.setBackground(new java.awt.Color(51, 51, 255));
+        del.setForeground(new java.awt.Color(255, 255, 255));
+        del.setText("delete");
+        del.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setBackground(new java.awt.Color(255, 153, 0));
+        jLabel2.setFont(new java.awt.Font("Kannada MN", 3, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("findEVERYTHING");
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_home_30px.png"))); // NOI18N
+        jLabel10.setText("HOME");
+        jLabel10.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jLabel10AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-face-30.png"))); // NOI18N
+        jLabel3.setText("ADMIN");
+
+        table.setBackground(new java.awt.Color(255, 153, 0));
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -92,104 +145,89 @@ public class admin_pr_114 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table);
 
-        refesh.setBackground(new java.awt.Color(51, 51, 255));
-        refesh.setForeground(new java.awt.Color(255, 255, 255));
-        refesh.setText("refesh");
-        refesh.addActionListener(new java.awt.event.ActionListener() {
+        searchcb.setBackground(new java.awt.Color(51, 51, 255));
+        searchcb.setForeground(new java.awt.Color(255, 255, 255));
+        searchcb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "name" }));
+        searchcb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refeshActionPerformed(evt);
+                searchcbActionPerformed(evt);
             }
         });
 
-        del.setBackground(new java.awt.Color(51, 51, 255));
-        del.setForeground(new java.awt.Color(255, 255, 255));
-        del.setText("delete");
-        del.addActionListener(new java.awt.event.ActionListener() {
+        search.setBackground(new java.awt.Color(51, 51, 255));
+        search.setForeground(new java.awt.Color(255, 255, 255));
+        search.setText("search");
+        search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delActionPerformed(evt);
+                searchActionPerformed(evt);
             }
         });
 
-        conf.setBackground(new java.awt.Color(51, 51, 255));
-        conf.setForeground(new java.awt.Color(255, 255, 255));
-        conf.setText("confirm");
-        conf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confActionPerformed(evt);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-add-30.png"))); // NOI18N
+        jLabel4.setText("approval");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(refesh, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106)
-                        .addComponent(conf)
-                        .addGap(102, 102, 102)
-                        .addComponent(del)
-                        .addGap(0, 4, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(refesh)
-                    .addComponent(del)
-                    .addComponent(conf))
-                .addContainerGap())
-        );
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Untitled-1.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(263, 263, 263)
+                .addComponent(del)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(searchcb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(search)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(37, 37, 37)
+                            .addComponent(jLabel10)
+                            .addGap(30, 30, 30)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(33, 33, 33)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchcb)
+                    .addComponent(searchTF)
+                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(del)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void refeshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refeshActionPerformed
-        tableModel.setRowCount(0);
-        SetModelTable(handle.GetAllWLine());        // TODO add your handling code here:
-    }//GEN-LAST:event_refeshActionPerformed
 
 
     private void delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionPerformed
@@ -201,26 +239,45 @@ public class admin_pr_114 extends javax.swing.JFrame {
             int confirmDelete = JOptionPane.showConfirmDialog(rootPane, "Are You sure?");
             if (confirmDelete == JOptionPane.YES_OPTION) {
                 int PrDataID = Integer.parseInt(String.valueOf(table.getValueAt(row, 0)));
-                handle.DeleteWLine(PrDataID);
+                handle.Delpr(PrDataID);
+                tableModel.setRowCount(0);
+                SetModelTable(handle.GetAllproduct());
             }
+
         }// TODO add your handling code here:
     }//GEN-LAST:event_delActionPerformed
 
-    private void confActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confActionPerformed
-        int row = table.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(rootPane, "Select the row you want to delete!",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-        int id = Integer.parseInt(String.valueOf(table.getValueAt(row, 0)));
-        WLine p = Handling.GetWLine(id);
-        handle.AddNewProductData(p); 
-        handle.DeleteWLine(id);
-        JOptionPane.showMessageDialog(rootPane, "Success!");
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
         tableModel.setRowCount(0);
-        SetModelTable(handle.GetAllWLine());
+        SetModelTable(handle.GetAllproduct());
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void searchcbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchcbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchcbActionPerformed
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        String valueCombobox = String.valueOf(searchcb.getSelectedItem().toString());
+        List<product> resultSearch = handle.GetResultSearch(valueCombobox, searchTF.getText());
+        tableModel.setRowCount(0);
+        if (!resultSearch.isEmpty()) {
+            SetModelTable(resultSearch);
+        } else {
+            searchTF.setText(valueCombobox + " Doesn't exist!");
         }
-    }//GEN-LAST:event_confActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchActionPerformed
+
+    private void jLabel10AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel10AncestorAdded
+        tableModel.setRowCount(0);
+        SetModelTable(handle.GetAllproduct());
+    }//GEN-LAST:event_jLabel10AncestorAdded
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        new ARV114().setVisible(true);
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -258,13 +315,17 @@ public class admin_pr_114 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton conf;
     private javax.swing.JButton del;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton refesh;
+    private javax.swing.JButton search;
+    private javax.swing.JTextField searchTF;
+    private javax.swing.JComboBox<String> searchcb;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

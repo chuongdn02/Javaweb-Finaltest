@@ -250,6 +250,18 @@ public class Handling {
             Logger.getLogger(Handling.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void Delpr(int id) {
+        Connection conn = connection.getJDBCConnection();
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement("delete from product where idProduct = ?");
+            ps.setInt(1, id);
+
+            int result  = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Handling.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void ShowtData(product PrD) {
         Connection conn = connection.getJDBCConnection();
