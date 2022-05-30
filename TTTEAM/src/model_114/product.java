@@ -12,16 +12,26 @@ public class product {
 
     private int id;
     private String name, des, price, title;
+    private int idUser;
 
     public product() {
     }
 
-    public product(int id, String name, String price, String des, String title) {
+    public product(int idUser, int id, String name, String price, String des, String title) {
+        this.idUser = idUser;
         this.id = id;
         this.name = name;
         this.des = des;
         this.price = price;
         this.title = title;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public int getid() {

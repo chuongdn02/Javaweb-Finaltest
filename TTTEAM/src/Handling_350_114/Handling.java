@@ -51,11 +51,11 @@ public class Handling {
         Connection conn = connection.getJDBCConnection();
 
         try {
-            
+
             PreparedStatement ps = conn.prepareStatement("select * from WLine where idWLine = " + id);
             //ps.setInt(1, id);
             ResultSet result = ps.executeQuery();
-            
+
             while (result.next()) {
 
                 PrD.setIdUser(result.getInt("id"));
@@ -222,11 +222,11 @@ public class Handling {
         }
     }
 
-    public void AddNewProductWLine(product PrD) {
+ public void AddNewProductWLine(product PrD) {
         Connection conn = connection.getJDBCConnection();
         try {
             PreparedStatement ps = conn.prepareStatement("insert into WLine(id,name,price,title,des) value (?,?,?,?,?)");
-            ps.setInt(1, PrD.getid());
+            ps.setInt(1, PrD.getIdUser());
             ps.setString(2, PrD.getname());
             ps.setString(3, PrD.getprice());
             ps.setString(4, PrD.gettitle());
@@ -240,24 +240,25 @@ public class Handling {
 
     public void DeleteWLine(int id) {
         Connection conn = connection.getJDBCConnection();
-        
+
         try {
             PreparedStatement ps = conn.prepareStatement("delete from WLine where idWLine = ?");
             ps.setInt(1, id);
 
-            int result  = ps.executeUpdate();
+            int result = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Handling.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void Delpr(int id) {
         Connection conn = connection.getJDBCConnection();
-        
+
         try {
             PreparedStatement ps = conn.prepareStatement("delete from product where idProduct = ?");
             ps.setInt(1, id);
 
-            int result  = ps.executeUpdate();
+            int result = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Handling.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -287,31 +288,15 @@ public class Handling {
         }
     }
 
-    public List<product> GetResultSearch(String searchType, String valueSearch) {
+    public List<product> GetResultSearch(String valueSearch) {
         List<product> PrData = new ArrayList<>();
         Connection conn = connection.getJDBCConnection();
 
         try {
-            PreparedStatement ps = null;
-            switch (searchType) {
-                case "title":
-                    ps = conn.prepareStatement("select * from product where title = ?");
-                    ps.setObject(1, valueSearch);
-                    break;
-                case "name":
-                    ps = conn.prepareStatement("select * from product where name = ?");
-                    ps.setObject(1, valueSearch);
-                    break;
-                case "price":
-                    ps = conn.prepareStatement("select * from product where price = ?");
-                    ps.setObject(1, valueSearch);
-                    break;
-                
-
-                
-            }
-
-            ResultSet result = ps.executeQuery();
+            Statement ps = null;
+            String pst = "select * from product where title like '%" + valueSearch + "%'";
+            ps = conn.createStatement();
+            ResultSet result = ps.executeQuery(pst);
             while (result.next()) {
                 product PrD = new product();
                 PrD.setid(result.getInt("id"));
@@ -359,7 +344,6 @@ public class Handling {
             PreparedStatement preparedStatement = conn.prepareStatement("insert into selectID(id) value(?)");
             preparedStatement.setInt(1, id);
             int result = preparedStatement.executeUpdate();
-
         } catch (SQLException ex) {
             Logger.getLogger(Handling.class.getName()).log(Level.SEVERE, null, ex);
         }

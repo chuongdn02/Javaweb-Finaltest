@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.net.URL;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model_114.product;
 
@@ -28,7 +29,7 @@ public class home_333 extends javax.swing.JFrame {
         handle = new Handling();
         initComponents();
         setLocationRelativeTo(null);
-        Color mycolor = new Color(255,153,0);
+        Color mycolor = new Color(255, 153, 0);
         this.getContentPane().setBackground(mycolor);
 
         tableModel = new DefaultTableModel() {
@@ -42,7 +43,6 @@ public class home_333 extends javax.swing.JFrame {
         tableModel.addColumn("title");
         tableModel.addColumn("name");
         tableModel.addColumn("price");
-        
 
         table.setModel(tableModel);
         SetModelTable(handle.GetAllproduct());
@@ -71,15 +71,15 @@ public class home_333 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         home = new javax.swing.JLabel();
         admin = new javax.swing.JLabel();
-        searchcb = new javax.swing.JComboBox<>();
-        search = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 255, 102));
+        setUndecorated(true);
 
         login.setBackground(new java.awt.Color(0, 0, 255));
         login.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -129,24 +129,6 @@ public class home_333 extends javax.swing.JFrame {
             }
         });
 
-        searchcb.setBackground(new java.awt.Color(51, 51, 255));
-        searchcb.setForeground(new java.awt.Color(255, 255, 255));
-        searchcb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "name", "price" }));
-        searchcb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchcbActionPerformed(evt);
-            }
-        });
-
-        search.setBackground(new java.awt.Color(51, 51, 255));
-        search.setForeground(new java.awt.Color(255, 255, 255));
-        search.setText("search");
-        search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
-            }
-        });
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banner.png"))); // NOI18N
 
         table.setBackground(new java.awt.Color(255, 153, 0));
@@ -161,6 +143,11 @@ public class home_333 extends javax.swing.JFrame {
                 "title", "name", "price"
             }
         ));
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
             table.getColumnModel().getColumn(0).setPreferredWidth(300);
@@ -186,6 +173,13 @@ public class home_333 extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-find-23.png"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,23 +189,21 @@ public class home_333 extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(searchcb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(30, 30, 30)
-                                .addComponent(home)
-                                .addGap(47, 47, 47)))
+                                .addComponent(home))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(search)
-                            .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(login, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(admin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(admin, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(login))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -223,12 +215,13 @@ public class home_333 extends javax.swing.JFrame {
                         .addComponent(admin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchcb)
-                    .addComponent(searchTF)
-                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(login))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(searchTF)
+                        .addComponent(login))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)))
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -243,11 +236,10 @@ public class home_333 extends javax.swing.JFrame {
     }//GEN-LAST:event_loginActionPerformed
 
     private void helpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpMouseClicked
-        try{
+        try {
             Desktop.getDesktop().browse(new URL("https://support.google.com/?hl=vi").toURI());
+        } catch (Exception e) {
         }
-        catch(Exception e)
-        {}
     }//GEN-LAST:event_helpMouseClicked
 
     private void homeAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_homeAncestorAdded
@@ -261,26 +253,32 @@ public class home_333 extends javax.swing.JFrame {
         SetModelTable(handle.GetAllproduct());
     }//GEN-LAST:event_homeMouseClicked
 
-    private void searchcbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchcbActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchcbActionPerformed
+    private void adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminMouseClicked
+        new login_ad_114().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_adminMouseClicked
 
-    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        String valueCombobox = String.valueOf(searchcb.getSelectedItem().toString());
-        List<product> resultSearch = handle.GetResultSearch(valueCombobox, searchTF.getText());
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        List<product> resultSearch = handle.GetResultSearch(searchTF.getText());
         tableModel.setRowCount(0);
         if (!resultSearch.isEmpty()) {
             SetModelTable(resultSearch);
         } else {
-            searchTF.setText(valueCombobox + " Doesn't exist!");
+            searchTF.setText(" Doesn't exist!");
         }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchActionPerformed
+    }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminMouseClicked
-        new login_ad_114().setVisible(true);
-        this.dispose();  
-    }//GEN-LAST:event_adminMouseClicked
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        int row = table.getSelectedRow();
+        int sig = JOptionPane.showConfirmDialog(rootPane, "you need to login");
+        if (sig == JOptionPane.YES_OPTION) {
+            new login_147().setVisible(true);
+            this.dispose();
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -323,12 +321,11 @@ public class home_333 extends javax.swing.JFrame {
     private javax.swing.JLabel home;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton login;
-    private javax.swing.JButton search;
     private javax.swing.JTextField searchTF;
-    private javax.swing.JComboBox<String> searchcb;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
